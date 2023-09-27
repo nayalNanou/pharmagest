@@ -4,6 +4,8 @@ public class CategoryMedicine {
 	private int id;
 	private String name;
 	
+	public CategoryMedicine() {}
+	
 	public CategoryMedicine(
 		int id,
 		String name

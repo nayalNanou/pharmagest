@@ -1,13 +1,13 @@
 package entity;
 
-public class MedicineSold {
+public class MedicinePurchased {
 	private int id;
 	private Medicine medicine;
 	private int quantity;
 	private Prescription prescription;
 	private TransactionOperation transactionOperation;
 	
-	public MedicineSold(
+	public MedicinePurchased(
 		int id,
 		Medicine medicine,
 		int quantity,
