@@ -9,11 +9,11 @@ import entity.Medicine;
 import entity.Supplier;
 
 public class MedicineDao extends ConnectionDatabase {
-	public ArrayList<Medicine> getMedicines() throws SQLException
+	public ArrayList<Medicine> getList() throws SQLException
 	{
 		ArrayList<Medicine> medicines = new ArrayList<Medicine>();
 		this.statement = this.connection.createStatement();
-		ResultSet rs = statement.executeQuery(
+		ResultSet rs = this.statement.executeQuery(
 			"SELECT m.id AS medicine_id, m.name AS medicine_name, m.pharmacy_price, " + 
 			"cm.id AS category_medicine_id, cm.name AS category_medicine_name, " + 
 			"m.prescription, m.stock_in_hand, m.maximum_stock, " +

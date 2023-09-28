@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import entity.Supplier;
 
 public class SupplierDao extends ConnectionDatabase {
-	public ArrayList<Supplier> getSuppliers() throws SQLException
+	public ArrayList<Supplier> getList() throws SQLException
 	{
 		ArrayList<Supplier> suppliers = new ArrayList<Supplier>();	
 		this.statement = this.connection.createStatement();
