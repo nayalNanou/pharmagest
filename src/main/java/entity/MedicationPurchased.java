@@ -1,15 +1,15 @@
 package entity;
 
-public class MedicinePurchased {
+public class MedicationPurchased {
 	private int id;
-	private Medicine medicine;
+	private Medication medicine;
 	private int quantity;
 	private Prescription prescription;
 	private TransactionOperation transactionOperation;
 	
-	public MedicinePurchased(
+	public MedicationPurchased(
 		int id,
-		Medicine medicine,
+		Medication medicine,
 		int quantity,
 		Prescription prescription,
 		TransactionOperation transactionOperation
@@ -22,7 +22,7 @@ public class MedicinePurchased {
 	}
 	
 	public int getId() { return this.id; }
-	public Medicine getMedicine() { return this.medicine; }
+	public Medication getMedicine() { return this.medicine; }
 	public int getQuantity() { return this.quantity; }
 	public Prescription getPrescription() { return this.prescription; }
 	public TransactionOperation getTransactionOperation() { return this.transactionOperation; }
@@ -32,7 +32,7 @@ public class MedicinePurchased {
 		this.id = id;
 	}
 	
-	public void setMedicine(Medicine medicine)
+	public void setMedicine(Medication medicine)
 	{
 		this.medicine = medicine;
 	}

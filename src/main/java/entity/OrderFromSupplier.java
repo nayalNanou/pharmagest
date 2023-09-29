@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class OrderFromSupplier {
 	private int id;
-	private Medicine medicine;
+	private Medication medicine;
 	private int quantityOrdered;
 	private double totalPrice;
 	private String status;
@@ -13,7 +13,7 @@ public class OrderFromSupplier {
 	
 	public OrderFromSupplier(
 		int id,
-		Medicine medicine,
+		Medication medicine,
 		int quantityOrdered,
 		double totalPrice,
 		String status,
@@ -30,7 +30,7 @@ public class OrderFromSupplier {
 	}
 	
 	public int getId() { return this.id; }
-	public Medicine getMedicine() { return this.medicine; }
+	public Medication getMedicine() { return this.medicine; }
 	public int getQuantityOrdered() { return this.quantityOrdered; }
 	public double getTotalPrice() { return this.totalPrice; }
 	public String getStatus() { return this.status; }
@@ -42,7 +42,7 @@ public class OrderFromSupplier {
 		this.id = id;
 	}
 	
-	public void setMedicine(Medicine medicine)
+	public void setMedicine(Medication medicine)
 	{
 		this.medicine = medicine;
 	}

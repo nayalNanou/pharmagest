@@ -1,12 +1,12 @@
 package entity;
 
-public class CategoryMedicine {
+public class MedicationCategory {
 	private int id;
 	private String name;
 	
-	public CategoryMedicine() {}
+	public MedicationCategory() {}
 	
-	public CategoryMedicine(
+	public MedicationCategory(
 		int id,
 		String name
 	) {

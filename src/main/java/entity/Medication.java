@@ -1,10 +1,10 @@
 package entity;
 
-public class Medicine {
+public class Medication {
 	private int id;
 	private String name;
 	private double pharmacyPrice;
-	private CategoryMedicine categoryMedicine;
+	private MedicationCategory medicationCategory;
 	private boolean prescription;
 	private int stockInHand;
 	private int maximumStock;
@@ -12,11 +12,11 @@ public class Medicine {
 	private double supplierPrice;
 	private Supplier supplier;
 	
-	public Medicine(
+	public Medication(
 		int id,
 		String name,
 		double pharmacyPrice,
-		CategoryMedicine categoryMedicine,
+		MedicationCategory medicationCategory,
 		boolean prescription,
 		int stockInHand,
 		int maximumStock,
@@ -27,7 +27,7 @@ public class Medicine {
 		this.setId(id);
 		this.setName(name);
 		this.setPharmacyPrice(pharmacyPrice);
-		this.setCategoryMedicine(categoryMedicine);
+		this.setMedicationCategory(medicationCategory);
 		this.setPrescription(prescription);
 		this.setStockInHand(stockInHand);
 		this.setMaximumStock(maximumStock);
@@ -39,7 +39,7 @@ public class Medicine {
 	public int getId() { return this.id; }
 	public String getName() { return this.name; }
 	public double getPharmacyPrice() { return this.pharmacyPrice; }
-	public CategoryMedicine getCategoryMedicine() { return this.categoryMedicine; }
+	public MedicationCategory getMedicationCategory() { return this.medicationCategory; }
 	public boolean getPrescription() { return this.prescription; }
 	public int getStockInHand() { return this.stockInHand; }
 	public int getMaximumStock() { return this.maximumStock; }
@@ -62,9 +62,9 @@ public class Medicine {
 		this.pharmacyPrice = pharmacyPrice;
 	}
 	
-	public void setCategoryMedicine(CategoryMedicine categoryMedicine)
+	public void setMedicationCategory(MedicationCategory medicationCategory)
 	{
-		this.categoryMedicine = categoryMedicine;
+		this.medicationCategory = medicationCategory;
 	}
 	
 	public void setPrescription(boolean prescription)
