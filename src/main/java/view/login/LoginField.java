@@ -13,6 +13,11 @@ public class LoginField {
 		return this.panel;
 	}
 	
+	public JTextField getTextField()
+	{
+		return this.textField;
+	}
+	
 	public LoginField()
 	{
 		this.panel = new JPanel(new FlowLayout());

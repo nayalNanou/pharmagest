@@ -3,6 +3,7 @@ package view.pharmacist;
 import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
+import view.Frame;
 
 public class PanelPharmacist {
 	private JPanel panel;
@@ -50,10 +51,37 @@ public class PanelPharmacist {
 	private void addComponents()
 	{
 		this.panel.add(this.navigationBar.getPanel(), this.navigationBarStyle);
-		this.panel.add(
-			this.medicationBelowOrderThresholdTable.getPanel(),
-			this.medicationBelowOrderThresholdTableStyle
-		);
-		// this.panel.add(this.medicationTable.getPanel(), this.medicationTableStyle);
+		this.panel.add(this.medicationTable.getPanel(), this.medicationTableStyle);
+	}
+	
+	public void showView(String viewName)
+	{
+		this.refreshPanel();
+		this.panel.add(this.navigationBar.getPanel(), this.navigationBarStyle);
+		this.selectedView(viewName);
+		Frame.resizeFrame();
+	}
+	
+	private void selectedView(String viewName)
+	{
+		if (
+			viewName.equals("MedicationTable")
+		) {
+			this.panel.add(this.medicationTable.getPanel(), this.medicationTableStyle);
+		}
+		else if (
+			viewName.equals("MedicationBelowOrderThresholdTable")
+		) {
+			this.panel.add(
+				this.medicationBelowOrderThresholdTable.getPanel(),
+				this.medicationBelowOrderThresholdTableStyle
+			);	
+		}
+	}
+	
+	private void refreshPanel() {
+		panel.removeAll();
+		panel.revalidate();
+		panel.repaint();
 	}
 }

@@ -18,6 +18,16 @@ public class PanelLoginForm {
 		return this.panel;
 	}
 	
+	public LoginField getLoginField()
+	{
+		return this.loginField;
+	}
+	
+	public PasswordField getPasswordField()
+	{
+		return this.passwordField;
+	}
+	
 	public PanelLoginForm()
 	{
 		this.instantiateComponents();
