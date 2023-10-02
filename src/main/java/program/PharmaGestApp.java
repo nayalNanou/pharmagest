@@ -13,6 +13,11 @@ public class PharmaGestApp {
 		
 		Frame.show();
 		
+		
+Frame.panelPharmacist.showView("MedicationBelowOrderThresholdTable");
+Frame.refreshFrame(Frame.panelPharmacist.getPanel());
+		
+		
 		connectionDatabase.closeConnection();
 	}
 }

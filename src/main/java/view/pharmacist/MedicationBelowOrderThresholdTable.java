@@ -7,9 +7,81 @@ import java.sql.SQLException;
 import dao.MedicationDao;
 import java.util.ArrayList;
 import entity.Medication;
+import controller.PharmacistController;
 
 public class MedicationBelowOrderThresholdTable {
 	private JPanel panel;
+	private JPanel table;
+	private MedicationDao medicationDao;
+	private ArrayList<JPanel> tableRows;
+	
+	public JPanel getPanel()
+	{
+		return this.panel;
+	}
+	
+	public MedicationBelowOrderThresholdTable() throws SQLException
+	{
+		this.instantiateComponents();
+		this.implementsLogic();
+		this.styleComponents();
+		this.addComponents();
+	}
+	
+	private void instantiateComponents()
+	{
+		this.panel = new JPanel();
+		this.medicationDao = new MedicationDao();
+		this.tableRows = new ArrayList<JPanel>();
+	}
+	
+	private void implementsLogic() throws SQLException
+	{
+		ArrayList<Medication> listMedication = this.medicationDao.findMedicationBelowOrderThreshold();
+		String[] columnNames = {
+			"Médicament", "Stock", "Seuil de commande", "Stock maximum", "Catégorie", "Ordonnance",
+			"Prix du fournisseur", "Fournisseur", "Action"
+		};
+		int listMedicationLen = listMedication.size();
+		int columnNamesLen = columnNames.length;
+		
+		this.table = new JPanel(new GridLayout((listMedicationLen + 1), columnNamesLen));
+		
+		for (int i = 0; i < columnNamesLen; i++) {
+			this.table.add(new JLabel(columnNames[i]));
+		}
+		
+		for (int i = 0; i < listMedicationLen; i++) {
+			Medication medication = listMedication.get(i);
+
+			this.table.add(new JLabel(medication.getName()));
+			this.table.add(new JLabel(String.valueOf(medication.getStockInHand())));
+			this.table.add(new JLabel(String.valueOf(medication.getMinimumThresholdBeforeSupplyOrder())));
+			this.table.add(new JLabel(String.valueOf(medication.getMaximumStock())));
+			this.table.add(new JLabel(medication.getMedicationCategory().getName()));
+			this.table.add(new JLabel(medication.getPrescription() ? "exigé" : "non exigé"));
+			this.table.add(new JLabel(String.valueOf(medication.getSupplierPrice())));
+			this.table.add(new JLabel(medication.getSupplier().getName()));
+			
+			JButton buttonCreateOrder = new JButton("Créer la commande");
+			buttonCreateOrder.setActionCommand(String.valueOf(medication.getId()));
+			buttonCreateOrder.addActionListener(PharmacistController.showOrderCreationForm);
+			this.table.add(buttonCreateOrder);
+		}
+	}
+	
+	private void styleComponents()
+	{
+	
+	}
+	
+	private void addComponents()
+	{
+		this.panel.add(this.table);
+	}
+	
+/*	
+	
 	private JLabel tableTitle;
 	private JTable table;
 	private JScrollPane scrollPane;
@@ -44,7 +116,7 @@ public class MedicationBelowOrderThresholdTable {
 	{
 		ArrayList<Medication> listMedication = this.medicationDao.findMedicationBelowOrderThreshold();
 		int listMedicationLen = listMedication.size();
-		String[][] data = new String[listMedicationLen][8];
+		String[][] data = new String[listMedicationLen][9];
 		String[] columnNames = {
 			"Médicament",
 			"Stock",
@@ -54,7 +126,7 @@ public class MedicationBelowOrderThresholdTable {
 			"Catégorie", 
 			"Ordonnance",
 			"Prix du fournisseur",
-			"Fournisseur"
+			"Fournisseur",
 		};
 		
 		for (int i = 0; i < listMedicationLen; i++) {
@@ -104,4 +176,5 @@ public class MedicationBelowOrderThresholdTable {
 		this.panel.add(this.tableTitle, this.tableTitleStyle);
 		this.panel.add(this.scrollPane, this.tableStyle);
 	}
+*/
 }

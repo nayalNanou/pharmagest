@@ -2,6 +2,7 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.*;
 import view.Frame;
 
 public class PharmacistController {
@@ -15,6 +16,18 @@ public class PharmacistController {
 	public static ActionListener showMedicationBelowOrderThreshold = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			Frame.panelPharmacist.showView("MedicationBelowOrderThresholdTable");
+			Frame.refreshFrame(Frame.panelPharmacist.getPanel());
+		}
+	};
+	
+	public static ActionListener showOrderCreationForm = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			JButton buttonCreateOrder = (JButton) e.getSource();
+			Frame.panelPharmacist.getOrderCreationForm().updateFormData(
+				Integer.parseInt(buttonCreateOrder.getActionCommand())
+			);
+
+			Frame.panelPharmacist.showView("OrderCreationForm");
 			Frame.refreshFrame(Frame.panelPharmacist.getPanel());
 		}
 	};
