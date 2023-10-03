@@ -76,7 +76,7 @@ public class MedicationBelowOrderThresholdTable {
 			tableRow[6] = new JLabel(String.valueOf(medication.getSupplierPrice()));
 			tableRow[7] = new JLabel(medication.getSupplier().getName());
 			JButton buttonCreateOrder = new JButton("Créer la commande");
-			String medicationData = String.valueOf(medication.getId()) + "@" + medication.getName() + "@" + String.valueOf(medication.getPharmacyPrice()) + "@" + medication.getPrescription() + "@" + medication.getMedicationCategory().getName() + "@" + String.valueOf(medication.getStockInHand()) + "@" + String.valueOf(medication.getMaximumStock()) + "@" + medication.getSupplier().getName();
+			String medicationData = String.valueOf(medication.getId()) + "@" + medication.getName() + "@" + String.valueOf(medication.getPharmacyPrice()) + "@" + medication.getPrescription() + "@" + medication.getMedicationCategory().getName() + "@" + String.valueOf(medication.getStockInHand()) + "@" + String.valueOf(medication.getMaximumStock()) + "@" + medication.getSupplier().getName() + "@" + medication.getSupplierPrice();
 			buttonCreateOrder.setActionCommand(medicationData);
 			buttonCreateOrder.addActionListener(PharmacistController.showOrderCreationForm);
 			tableRow[8] = buttonCreateOrder;

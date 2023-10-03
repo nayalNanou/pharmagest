@@ -15,18 +15,24 @@ public class GenericTextField {
 		return this.panel;
 	}
 	
-	public GenericTextField(String labelText, String fieldValue)
+	public void setFieldValue(String fieldValue)
 	{
-		this.instantiateComponents(labelText, fieldValue);
+		this.textField.setText(fieldValue);
+	}
+	
+	public GenericTextField(String labelText, boolean isEnabled)
+	{
+		this.instantiateComponents(labelText, isEnabled);
 		this.styleComponents();
 		this.addComponents();
 	}
 	
-	private void instantiateComponents(String labelText, String fieldValue)
+	private void instantiateComponents(String labelText, boolean isEnabled)
 	{
 		this.panel = new JPanel(new GridBagLayout());
 		this.label = new JLabel(labelText);
-		this.textField = new JTextField(fieldValue);
+		this.textField = new JTextField();
+		this.textField.setEnabled(isEnabled);
 		
 		this.labelStyle = new GridBagConstraints();
 		this.textFieldStyle = new GridBagConstraints();
@@ -34,7 +40,8 @@ public class GenericTextField {
 	
 	private void styleComponents()
 	{
-		this.textField.setColumns(15);
+		this.panel.setBorder(BorderFactory.createEmptyBorder(4, 4, 8, 4));
+		this.textField.setColumns(18);
 	
 		this.labelStyle.gridy = 0;
 		this.labelStyle.anchor = GridBagConstraints.WEST;
