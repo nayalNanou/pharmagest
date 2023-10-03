@@ -53,6 +53,34 @@ public class MedicationDao extends ConnectionDatabase {
 		
 		return listMedication;
 	}
+
+/*
+	public Medication findById(int id) throws SQLException
+	{
+		Medication medication = new Medication();
+		
+		this.preparedStatement = this.connection.prepareStatement(
+			"SELECT m.id AS medication_id, m.name AS medication_name, m.pharmacy_price, " + 
+			"mc.id AS medication_category_id, mc.name AS medication_category_name, " + 
+			"m.prescription, m.stock_in_hand, m.maximum_stock, " +
+			"m.minimum_threshold_before_supply_order, m.supplier_price, s.id AS supplier_id, " +
+			"s.name AS supplier_name " +
+			"FROM medication AS m " +
+			"INNER JOIN medication_category AS mc " +
+			"ON m.medication_category_id = mc.id " +
+			"INNER JOIN supplier AS s " +
+			"ON m.supplier_id = s.id" +
+			"WHERE m.id = ?;"
+		);
+		ResultSet rs = this.preparedStatement.executeQuery();
+		
+		while (rs.next()) {
+			
+		}
+		
+		return medication;
+	}
+*/
 	
 	public ArrayList<Medication> findMedicationBelowOrderThreshold() throws SQLException
 	{

@@ -12,6 +12,8 @@ public class Medication {
 	private double supplierPrice;
 	private Supplier supplier;
 	
+	public Medication() {}
+	
 	public Medication(
 		int id,
 		String name,

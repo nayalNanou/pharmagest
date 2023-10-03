@@ -40,14 +40,29 @@ public class OrderCreationForm {
 		this.panel.add(this.prescription.getPanel());
 	}
 	
-	public void updateFormData(int idSelectedMedication)
+	public void updateFormData(String medicationDataString)
 	{
 		this.refreshPanel();
-	
-		System.out.println("Id selected medication : " + idSelectedMedication);
+
+		String[] medicationData = medicationDataString.split("@");
 		
-		this.medicationName = new GenericTextField("Médicament", String.valueOf(Math.random()));
+		System.out.println(medicationData[3]);
 		
+		int medicationId = Integer.parseInt(medicationData[0]);
+		String medicationName = medicationData[1];
+		String medicationPrice = medicationData[2];
+		String prescription = Boolean.parseBoolean(medicationData[3]) ? "Requis" : "Non requis";
+		String medicationCategory = medicationData[4];
+		String medicationStock = medicationData[5];
+		String medicationMaximumStock = medicationData[6];
+		String medicationSupplier = medicationData[7];
+		
+		System.out.println(medicationDataString);
+		
+		this.medicationName = new GenericTextField("Médicament", medicationName);
+		this.price = new GenericTextField("Prix unitaire", medicationPrice);
+		this.prescription = new GenericTextField("Ordonnance", prescription);
+
 		this.addComponents();
 	}
 	

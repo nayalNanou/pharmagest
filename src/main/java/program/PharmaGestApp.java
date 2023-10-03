@@ -6,13 +6,13 @@ import view.Frame;
 
 import entity.User;
 import dao.UserDao;
+import javax.swing.*;
 
 public class PharmaGestApp {
 	public static void main(String[] args) throws SQLException {
 		ConnectionDatabase connectionDatabase = new ConnectionDatabase();
 		
 		Frame.show();
-		
 		
 Frame.panelPharmacist.showView("MedicationBelowOrderThresholdTable");
 Frame.refreshFrame(Frame.panelPharmacist.getPanel());
