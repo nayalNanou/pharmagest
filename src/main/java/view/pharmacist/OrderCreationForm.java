@@ -8,6 +8,7 @@ import java.sql.SQLException;
 
 import controller.PharmacistController;
 import dao.OrderFromSupplierDao;
+import view.utility.GenericTextField;
 
 public class OrderCreationForm {
 	private JPanel panel;

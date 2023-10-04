@@ -34,7 +34,8 @@ public class LoginController {
 				} else if (user.getRole().equals("CASHIER")) {
 				
 				} else if (user.getRole().equals("SELLER")) {
-				
+					Frame.panelPharmacist.showView("SalesWindow");
+					Frame.refreshFrame(Frame.panelSeller.getPanel());
 				} else if (user.getRole().equals("ADMIN")) {
 				
 				} else {

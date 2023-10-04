@@ -15,9 +15,6 @@ public class PharmaGestApp {
 		
 		Frame.show();
 		
-Frame.panelPharmacist.showView("OrdersNotSentTable");
-Frame.refreshFrame(Frame.panelPharmacist.getPanel());
-		
 		connectionDatabase.closeConnection();
 	}
 }

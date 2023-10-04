@@ -5,12 +5,14 @@ import java.sql.SQLException;
 import javax.swing.*;
 import view.login.PanelLoginForm;
 import view.pharmacist.PanelPharmacist;
+import view.seller.PanelSeller;
 
 public class Frame {
 	private static JFrame frame;
 	private static JPanel panel;
 	public static PanelLoginForm panelLoginForm;
 	public static PanelPharmacist panelPharmacist;
+	public static PanelSeller panelSeller;
 	
 	public static void show() throws SQLException
 	{
@@ -29,6 +31,7 @@ public class Frame {
 		panel = new JPanel();
 		panelLoginForm = new PanelLoginForm();
 		panelPharmacist = new PanelPharmacist();
+		panelSeller = new PanelSeller();
 	}
 	
 	private static void addComponents()

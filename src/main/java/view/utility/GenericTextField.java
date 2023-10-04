@@ -1,4 +1,4 @@
-package view.pharmacist;
+package view.utility;
 
 import javax.swing.*;
 import java.awt.*;
