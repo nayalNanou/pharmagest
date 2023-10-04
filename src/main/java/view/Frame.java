@@ -6,6 +6,7 @@ import javax.swing.*;
 import view.login.PanelLogin;
 import view.pharmacist.PanelPharmacist;
 import view.seller.PanelSeller;
+import view.cashier.PanelCashier;
 
 public class Frame {
 	private static JFrame frame;
@@ -13,6 +14,7 @@ public class Frame {
 	public static PanelLogin panelLogin;
 	public static PanelPharmacist panelPharmacist;
 	public static PanelSeller panelSeller;
+	public static PanelCashier panelCashier;
 	
 	public static void show() throws SQLException
 	{
@@ -32,6 +34,7 @@ public class Frame {
 		panelLogin = new PanelLogin();
 		panelPharmacist = new PanelPharmacist();
 		panelSeller = new PanelSeller();
+		panelCashier = new PanelCashier();
 	}
 	
 	private static void addComponents()

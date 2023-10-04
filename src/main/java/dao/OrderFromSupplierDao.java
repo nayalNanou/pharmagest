@@ -80,8 +80,6 @@ public class OrderFromSupplierDao extends ConnectionDatabase {
 			"VALUES (?, ?, ?, ?, ?)"
 		);
 		
-		System.out.println(medicationId + "|" + quantityOrdered + "|" + status + "|" + dateSending + "|" + totalPrice);
-		
 		preparedStatement.setInt(1, medicationId);
 		preparedStatement.setInt(2, quantityOrdered);
 		preparedStatement.setString(3, status);
@@ -89,7 +87,6 @@ public class OrderFromSupplierDao extends ConnectionDatabase {
 		preparedStatement.setDouble(5, totalPrice);
 		
 		preparedStatement.executeUpdate();
-		
-		System.out.println("Insertion des données");
+		preparedStatement.close();
 	}
 }
