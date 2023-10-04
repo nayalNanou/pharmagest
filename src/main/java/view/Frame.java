@@ -3,14 +3,14 @@ package view;
 import java.sql.SQLException;
 
 import javax.swing.*;
-import view.login.PanelLoginForm;
+import view.login.PanelLogin;
 import view.pharmacist.PanelPharmacist;
 import view.seller.PanelSeller;
 
 public class Frame {
 	private static JFrame frame;
 	private static JPanel panel;
-	public static PanelLoginForm panelLoginForm;
+	public static PanelLogin panelLogin;
 	public static PanelPharmacist panelPharmacist;
 	public static PanelSeller panelSeller;
 	
@@ -29,14 +29,14 @@ public class Frame {
 		frame = new JFrame();
 		frame.setTitle("Pharmacy");
 		panel = new JPanel();
-		panelLoginForm = new PanelLoginForm();
+		panelLogin = new PanelLogin();
 		panelPharmacist = new PanelPharmacist();
 		panelSeller = new PanelSeller();
 	}
 	
 	private static void addComponents()
 	{
-		panel.add(panelLoginForm.getPanel());
+		panel.add(panelLogin.getPanel());
 		frame.add(panel);	
 	}
 	

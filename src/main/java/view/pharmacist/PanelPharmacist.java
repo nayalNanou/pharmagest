@@ -4,14 +4,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
 import view.Frame;
+import view.AppMenu;
 
 public class PanelPharmacist {
 	private JPanel panel;
+	private AppMenu appMenu;
 	private NavigationBar navigationBar;
 	private MedicationTable medicationTable;
 	private OrderCreationForm orderCreationForm;
 	private MedicationBelowOrderThresholdTable medicationBelowOrderThresholdTable;
 	private OrdersNotSentTable ordersNotSentTable;
+	private GridBagConstraints appMenuStyle;
 	private GridBagConstraints navigationBarStyle;
 	private GridBagConstraints medicationTableStyle;
 	private GridBagConstraints medicationBelowOrderThresholdTableStyle;
@@ -38,11 +41,13 @@ public class PanelPharmacist {
 	private void instantiateComponents() throws SQLException
 	{
 		this.panel = new JPanel(new GridBagLayout());
+		this.appMenu = new AppMenu();
 		this.medicationTable = new MedicationTable();
 		this.medicationBelowOrderThresholdTable = new MedicationBelowOrderThresholdTable();
 		this.ordersNotSentTable = new OrdersNotSentTable();
 		this.orderCreationForm = new OrderCreationForm();
 		this.navigationBar = new NavigationBar();
+		this.appMenuStyle = new GridBagConstraints();
 		this.navigationBarStyle = new GridBagConstraints();
 		this.medicationTableStyle = new GridBagConstraints();
 		this.medicationBelowOrderThresholdTableStyle = new GridBagConstraints();
@@ -52,12 +57,14 @@ public class PanelPharmacist {
 	
 	private void styleComponents()
 	{
-		this.navigationBarStyle.gridy = 0;
+		this.appMenuStyle.gridy = 0;
+	
+		this.navigationBarStyle.gridy = 1;
 		
-		this.medicationTableStyle.gridy = 1;
-		this.medicationBelowOrderThresholdTableStyle.gridy = 1;
-		this.ordersNotSentTableStyle.gridy = 1;
-		this.createAnOrderStyle.gridy = 1;
+		this.medicationTableStyle.gridy = 2;
+		this.medicationBelowOrderThresholdTableStyle.gridy = 2;
+		this.ordersNotSentTableStyle.gridy = 2;
+		this.createAnOrderStyle.gridy = 2;
 		
 		this.navigationBar.getPanel().setBorder(
 			BorderFactory.createEmptyBorder(20, 0, 0, 0)
@@ -73,7 +80,10 @@ public class PanelPharmacist {
 	public void showView(String viewName)
 	{
 		this.refreshPanel();
+		
+		this.panel.add(this.appMenu.getPanel(), this.appMenuStyle);
 		this.panel.add(this.navigationBar.getPanel(), this.navigationBarStyle);
+		
 		this.selectedView(viewName);
 		Frame.resizeFrame();
 	}

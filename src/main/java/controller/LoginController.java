@@ -12,8 +12,8 @@ public class LoginController {
 	public static ActionListener signIn = new ActionListener() {
 		public void actionPerformed(ActionEvent e) {
 			UserDao userDao = new UserDao();
-			String username = Frame.panelLoginForm.getLoginField().getTextField().getText();
-			String password = Frame.panelLoginForm.getPasswordField().getTextField().getText();
+			String username = Frame.panelLogin.getLoginForm().getLoginField().getTextField().getText();
+			String password = Frame.panelLogin.getLoginForm().getPasswordField().getTextField().getText();
 			String errorMessage = "Le nom d'utilisateur ou mot de passe n'est pas valide.";
 			
 			User user = new User();
@@ -47,5 +47,14 @@ public class LoginController {
 				System.out.println(errorMessage);
 			}
 		}
+	};
+	
+	public static ActionListener logout = new ActionListener() {
+		public void actionPerformed(ActionEvent e) {
+			Frame.panelLogin.getLoginForm().getPasswordField().getTextField().setText("");
+		
+			Frame.panelLogin.showView("LoginForm");
+			Frame.refreshFrame(Frame.panelLogin.getPanel());
+		}		
 	};
 }

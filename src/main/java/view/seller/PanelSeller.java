@@ -6,9 +6,12 @@ import java.sql.SQLException;
 import javax.swing.*;
 
 import view.Frame;
+import view.AppMenu;
 
 public class PanelSeller {
 	private JPanel panel;
+	private AppMenu appMenu;
+	private GridBagConstraints appMenuStyle;
 	private SalesWindow salesWindow;
 	private GridBagConstraints salesWindowStyle;
 	
@@ -27,17 +30,21 @@ public class PanelSeller {
 	private void instantiateComponents() throws SQLException
 	{
 		this.panel = new JPanel(new GridBagLayout());
+		this.appMenu = new AppMenu();
+		this.appMenuStyle = new GridBagConstraints();
 		this.salesWindow = new SalesWindow();
 		this.salesWindowStyle = new GridBagConstraints();
 	}
 	
 	private void styleComponents()
 	{
+		this.appMenuStyle.gridy = 0;
 		this.salesWindowStyle.gridy = 1;
 	}
 	
 	private void addComponents()
 	{
+		this.panel.add(this.appMenu.getPanel(), this.appMenuStyle);
 		this.panel.add(this.salesWindow.getPanel(), this.salesWindowStyle);
 	}
 	
@@ -45,7 +52,7 @@ public class PanelSeller {
 	{
 		this.refreshPanel();
 		
-		// this.panel.add(this.navigationBar.getPanel(), this.navigationBarStyle);
+		this.panel.add(this.appMenu.getPanel(), this.appMenuStyle);
 		
 		this.selectedView(viewName);
 		Frame.resizeFrame();

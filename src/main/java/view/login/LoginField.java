@@ -3,7 +3,7 @@ package view.login;
 import javax.swing.*;
 import java.awt.*;
 
-public class FormField {
+public class LoginField {
 	private JPanel panel;
 	private JLabel label;
 	private JTextField textField;
@@ -20,7 +20,7 @@ public class FormField {
 		return this.textField;
 	}
 	
-	public FormField(String labelText)
+	public LoginField(String labelText)
 	{
 		this.instantiateComponents(labelText);
 		this.styleComponents();
