@@ -3,11 +3,10 @@ package view.cashier;
 import javax.swing.JPanel;
 import java.awt.*;
 import view.Frame;
-import view.AppMenu;
+import view.menu.AppMenu;
 
 public class PanelCashier {
 	private JPanel panel;
-	private AppMenu appMenu;
 	private SalesTransactionTable salesTransactionTable;
 	
 	private GridBagConstraints appMenuStyle;
@@ -16,11 +15,6 @@ public class PanelCashier {
 	public JPanel getPanel()
 	{
 		return this.panel;
-	}
-	
-	public AppMenu getAppMenu()
-	{
-		return this.appMenu;
 	}
 	
 	public SalesTransactionTable getSalesTransactionTable()
@@ -38,7 +32,6 @@ public class PanelCashier {
 	public void instantiateComponents()
 	{
 		this.panel = new JPanel(new GridBagLayout());
-		this.appMenu = new AppMenu();
 		this.salesTransactionTable = new SalesTransactionTable();
 		
 		this.appMenuStyle = new GridBagConstraints();
@@ -53,15 +46,12 @@ public class PanelCashier {
 	
 	public void addComponents()
 	{
-		this.panel.add(this.appMenu.getPanel(), this.appMenuStyle);
 		this.panel.add(this.salesTransactionTable.getPanel(), this.salesTransactionTableStyle);
 	}
 		
 	public void showView(String viewName)
 	{
 		this.refreshPanel();
-		
-		this.panel.add(this.appMenu.getPanel(), this.appMenuStyle);
 		
 		this.selectedView(viewName);
 		Frame.resizeFrame();

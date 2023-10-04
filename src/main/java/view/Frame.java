@@ -1,9 +1,12 @@
 package view;
 
+import java.awt.GridBagLayout;
 import java.sql.SQLException;
 
 import javax.swing.*;
+import java.awt.*;
 import view.login.PanelLogin;
+import view.menu.AppMenu;
 import view.pharmacist.PanelPharmacist;
 import view.seller.PanelSeller;
 import view.cashier.PanelCashier;
@@ -11,6 +14,7 @@ import view.cashier.PanelCashier;
 public class Frame {
 	private static JFrame frame;
 	private static JPanel panel;
+	public static AppMenu appMenu;
 	public static PanelLogin panelLogin;
 	public static PanelPharmacist panelPharmacist;
 	public static PanelSeller panelSeller;
@@ -30,7 +34,8 @@ public class Frame {
 	{
 		frame = new JFrame();
 		frame.setTitle("Pharmacy");
-		panel = new JPanel();
+		panel = new JPanel(new GridBagLayout());
+		appMenu = new AppMenu();
 		panelLogin = new PanelLogin();
 		panelPharmacist = new PanelPharmacist();
 		panelSeller = new PanelSeller();
@@ -45,7 +50,13 @@ public class Frame {
 	
 	public static void refreshFrame(JPanel newContent) {
 		panel.removeAll();
-		panel.add(newContent);
+		
+		GridBagConstraints gbc = new GridBagConstraints();
+		gbc.gridy = 0;
+		panel.add(appMenu.getPanel(), gbc);
+		gbc.gridy = 1;
+		panel.add(newContent, gbc);
+		
 		frame.pack();
 		panel.revalidate();
 		panel.repaint();

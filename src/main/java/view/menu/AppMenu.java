@@ -1,4 +1,4 @@
-package view;
+package view.menu;
 
 import javax.swing.*;
 import java.awt.*;
@@ -16,6 +16,8 @@ public class AppMenu {
 	private JButton buttonPharmacist;
 	private JButton buttonSeller;
 	private JButton buttonCashier;
+	private JLabel userFullName;
+	private JLabel userRole;
 	
 	private GridBagConstraints userPanelStyle;
 	private GridBagConstraints adminPanelStyle;
@@ -28,6 +30,16 @@ public class AppMenu {
 	public JPanel getAdminPanel()
 	{
 		return this.adminPanel;
+	}
+	
+	public JLabel getUserFullName()
+	{
+		return this.userFullName;
+	}
+	
+	public JLabel getUserRole()
+	{
+		return this.userRole;
 	}
 	
 	public AppMenu()
@@ -52,6 +64,9 @@ public class AppMenu {
 		
 		this.userPanelStyle = new GridBagConstraints();
 		this.adminPanelStyle = new GridBagConstraints();
+		
+		this.userFullName = new JLabel("");
+		this.userRole = new JLabel("");
 	}
 	
 	public void implementLogic()
@@ -61,23 +76,26 @@ public class AppMenu {
 		this.buttonPharmacist.addActionListener(PharmacistController.showMedicationList);
 		this.buttonSeller.addActionListener(SellerController.showSalesWindow);
 		this.buttonCashier.addActionListener(CashierController.showSalesTransactionTable);
-		
-		this.adminPanel.setVisible(false);
 	}
 	
 	public void styleComponents()
 	{
 		this.userPanelStyle.gridy = 0;
 		this.adminPanelStyle.gridy = 1;
+		
+		this.userFullName.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
+		this.userRole.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20));
 	}
 	
 	public void addComponents()
 	{
+		this.userPanel.add(this.userFullName);
+		this.userPanel.add(this.userRole);
 		this.userPanel.add(logoutButton);
 		this.adminPanel.add(this.buttonPharmacist);
 		this.adminPanel.add(this.buttonSeller);
 		this.adminPanel.add(this.buttonCashier);
-		this.panel.add(userPanel, this.userPanelStyle);
 		this.panel.add(adminPanel, this.adminPanelStyle);
+		this.panel.add(userPanel, this.userPanelStyle);
 	}
 }

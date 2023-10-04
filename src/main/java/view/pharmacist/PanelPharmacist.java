@@ -4,11 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.sql.SQLException;
 import view.Frame;
-import view.AppMenu;
+import view.menu.AppMenu;
 
 public class PanelPharmacist {
 	private JPanel panel;
-	private AppMenu appMenu;
 	private NavigationBar navigationBar;
 	private MedicationTable medicationTable;
 	private OrderCreationForm orderCreationForm;
@@ -26,11 +25,6 @@ public class PanelPharmacist {
 		return this.panel;
 	}
 	
-	public AppMenu getAppMenu()
-	{
-		return this.appMenu;
-	}
-	
 	public OrderCreationForm getOrderCreationForm()
 	{
 		return this.orderCreationForm;
@@ -46,7 +40,7 @@ public class PanelPharmacist {
 	private void instantiateComponents() throws SQLException
 	{
 		this.panel = new JPanel(new GridBagLayout());
-		this.appMenu = new AppMenu();
+		// this.appMenu = new AppMenu();
 		this.medicationTable = new MedicationTable();
 		this.medicationBelowOrderThresholdTable = new MedicationBelowOrderThresholdTable();
 		this.ordersNotSentTable = new OrdersNotSentTable();
@@ -86,7 +80,6 @@ public class PanelPharmacist {
 	{
 		this.refreshPanel();
 		
-		this.panel.add(this.appMenu.getPanel(), this.appMenuStyle);
 		this.panel.add(this.navigationBar.getPanel(), this.navigationBarStyle);
 		
 		this.selectedView(viewName);

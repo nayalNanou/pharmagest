@@ -7,7 +7,7 @@ import java.sql.SQLException;
 import dao.UserDao;
 import entity.User;
 import view.Frame;
-import view.AppMenu;
+import view.menu.AppMenu;
 
 public class LoginController {
 	public static ActionListener signIn = new ActionListener() {
@@ -17,20 +17,11 @@ public class LoginController {
 			String password = Frame.panelLogin.getLoginForm().getPasswordField().getTextField().getText();
 			String errorMessage = "Le nom d'utilisateur ou mot de passe n'est pas valide.";
 			
-			if (username.equals("admin")) {
-				User loggedInUser = new User(
-					0,
-					"admin",
-					"Administrateur",
-					"",
-					"ADMIN"
-				);
-				// Frame.panelLogin.setLoggedInUser(loggedInUser);
-			
-				Frame.panelPharmacist.getAppMenu().getAdminPanel().setVisible(true);
-				Frame.panelSeller.getAppMenu().getAdminPanel().setVisible(true);
-				Frame.panelCashier.getAppMenu().getAdminPanel().setVisible(true);
-				
+			if (username.equals("admin")) {				
+				Frame.appMenu.getUserFullName().setText("Administrateur");
+				Frame.appMenu.getUserRole().setText("Admin");
+				Frame.appMenu.getAdminPanel().setVisible(true);
+				Frame.appMenu.getPanel().setVisible(true);
 				Frame.panelPharmacist.showView("MedicationTable");
 				Frame.refreshFrame(Frame.panelPharmacist.getPanel());
 			} else {
@@ -46,11 +37,12 @@ public class LoginController {
 					&& !user.getUsername().equals("") 
 					&& user.getUsername().equals(username) 
 					&& user.getPassword().equals(password)
-				) {			
-					Frame.panelPharmacist.getAppMenu().getAdminPanel().setVisible(false);
-					Frame.panelSeller.getAppMenu().getAdminPanel().setVisible(false);
-					Frame.panelCashier.getAppMenu().getAdminPanel().setVisible(false);
-					
+				) {		
+					Frame.appMenu.getUserFullName().setText(user.getFullName());
+					Frame.appMenu.getUserRole().setText(user.getRole());
+					Frame.appMenu.getPanel().setVisible(true);
+					Frame.appMenu.getAdminPanel().setVisible(false);
+
 					if (user.getRole().equals("PHARMACIST")) {
 						Frame.panelPharmacist.showView("MedicationTable");
 						Frame.refreshFrame(Frame.panelPharmacist.getPanel());
@@ -61,9 +53,7 @@ public class LoginController {
 						Frame.panelSeller.showView("SalesWindow");
 						Frame.refreshFrame(Frame.panelSeller.getPanel());
 					} else if (user.getRole().equals("ADMIN")) {
-						Frame.panelPharmacist.getAppMenu().getAdminPanel().setVisible(true);
-						Frame.panelSeller.getAppMenu().getAdminPanel().setVisible(true);
-						Frame.panelCashier.getAppMenu().getAdminPanel().setVisible(true);
+						Frame.appMenu.getAdminPanel().setVisible(true);
 					
 						Frame.panelPharmacist.showView("MedicationTable");
 						Frame.refreshFrame(Frame.panelPharmacist.getPanel());
@@ -79,6 +69,7 @@ public class LoginController {
 		public void actionPerformed(ActionEvent e) {
 			Frame.panelLogin.getLoginForm().getPasswordField().getTextField().setText("");
 			Frame.panelLogin.getLoginForm().getErrorMessage().setText("");
+			Frame.appMenu.getPanel().setVisible(false);
 		
 			Frame.panelLogin.showView("LoginForm");
 			Frame.refreshFrame(Frame.panelLogin.getPanel());
