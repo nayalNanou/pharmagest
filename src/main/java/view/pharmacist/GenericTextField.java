@@ -2,11 +2,13 @@ package view.pharmacist;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 
 public class GenericTextField {
 	private JPanel panel;
 	private JLabel label;
 	private JTextField textField;
+	private boolean isEnabled;
 	private GridBagConstraints labelStyle;
 	private GridBagConstraints textFieldStyle;
 	
@@ -20,19 +22,26 @@ public class GenericTextField {
 		this.textField.setText(fieldValue);
 	}
 	
+	public JTextField getTextField()
+	{
+		return this.textField;
+	}
+	
 	public GenericTextField(String labelText, boolean isEnabled)
 	{
-		this.instantiateComponents(labelText, isEnabled);
+		this.isEnabled = isEnabled;
+		
+		this.instantiateComponents(labelText);
 		this.styleComponents();
 		this.addComponents();
 	}
 	
-	private void instantiateComponents(String labelText, boolean isEnabled)
+	private void instantiateComponents(String labelText)
 	{
 		this.panel = new JPanel(new GridBagLayout());
 		this.label = new JLabel(labelText);
 		this.textField = new JTextField();
-		this.textField.setEnabled(isEnabled);
+		this.textField.setEnabled(this.isEnabled);
 		
 		this.labelStyle = new GridBagConstraints();
 		this.textFieldStyle = new GridBagConstraints();
@@ -40,6 +49,11 @@ public class GenericTextField {
 	
 	private void styleComponents()
 	{
+		// If the textField is disabled
+		this.textField.setDisabledTextColor(Color.GRAY);
+		
+		this.textField.setFont(new Font("Serif", Font.PLAIN, 16));
+		
 		this.panel.setBorder(BorderFactory.createEmptyBorder(4, 4, 8, 4));
 		this.textField.setColumns(18);
 	

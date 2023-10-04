@@ -7,6 +7,7 @@ import view.Frame;
 import entity.User;
 import dao.UserDao;
 import javax.swing.*;
+import dao.OrderFromSupplierDao;
 
 public class PharmaGestApp {
 	public static void main(String[] args) throws SQLException {
@@ -14,9 +15,8 @@ public class PharmaGestApp {
 		
 		Frame.show();
 		
-Frame.panelPharmacist.showView("MedicationBelowOrderThresholdTable");
+Frame.panelPharmacist.showView("OrdersNotSentTable");
 Frame.refreshFrame(Frame.panelPharmacist.getPanel());
-		
 		
 		connectionDatabase.closeConnection();
 	}

@@ -11,9 +11,11 @@ public class PanelPharmacist {
 	private MedicationTable medicationTable;
 	private OrderCreationForm orderCreationForm;
 	private MedicationBelowOrderThresholdTable medicationBelowOrderThresholdTable;
+	private OrdersNotSentTable ordersNotSentTable;
 	private GridBagConstraints navigationBarStyle;
 	private GridBagConstraints medicationTableStyle;
 	private GridBagConstraints medicationBelowOrderThresholdTableStyle;
+	private GridBagConstraints ordersNotSentTableStyle;
 	private GridBagConstraints createAnOrderStyle;
 	
 	public JPanel getPanel()
@@ -38,11 +40,13 @@ public class PanelPharmacist {
 		this.panel = new JPanel(new GridBagLayout());
 		this.medicationTable = new MedicationTable();
 		this.medicationBelowOrderThresholdTable = new MedicationBelowOrderThresholdTable();
+		this.ordersNotSentTable = new OrdersNotSentTable();
 		this.orderCreationForm = new OrderCreationForm();
 		this.navigationBar = new NavigationBar();
 		this.navigationBarStyle = new GridBagConstraints();
 		this.medicationTableStyle = new GridBagConstraints();
 		this.medicationBelowOrderThresholdTableStyle = new GridBagConstraints();
+		this.ordersNotSentTableStyle = new GridBagConstraints();
 		this.createAnOrderStyle = new GridBagConstraints();
 	}
 	
@@ -52,6 +56,7 @@ public class PanelPharmacist {
 		
 		this.medicationTableStyle.gridy = 1;
 		this.medicationBelowOrderThresholdTableStyle.gridy = 1;
+		this.ordersNotSentTableStyle.gridy = 1;
 		this.createAnOrderStyle.gridy = 1;
 		
 		this.navigationBar.getPanel().setBorder(
@@ -89,6 +94,10 @@ public class PanelPharmacist {
 			viewName.equals("OrderCreationForm")
 		) {
 			this.viewCreateAnOrder();
+		} else if (
+			viewName.equals("OrdersNotSentTable")
+		) {
+			this.viewOrdersNotSentTable();
 		}
 	}
 	
@@ -108,6 +117,11 @@ public class PanelPharmacist {
 	private void viewCreateAnOrder()
 	{
 		this.panel.add(this.orderCreationForm.getPanel(), this.createAnOrderStyle);
+	}
+	
+	private void viewOrdersNotSentTable()
+	{
+		this.panel.add(this.ordersNotSentTable.getPanel(), this.ordersNotSentTableStyle);
 	}
 	
 	private void refreshPanel() {

@@ -4,24 +4,24 @@ import java.util.Date;
 
 public class OrderFromSupplier {
 	private int id;
-	private Medication medicine;
+	private Medication medication;
 	private int quantityOrdered;
 	private double totalPrice;
 	private String status;
-	private Date dateSending;
+	private String dateSending;
 	private int quantityReceived;
 	
 	public OrderFromSupplier(
 		int id,
-		Medication medicine,
+		Medication medication,
 		int quantityOrdered,
 		double totalPrice,
 		String status,
-		Date dateSending,
+		String dateSending,
 		int quantityReceived
 	) {
 		this.setId(id);
-		this.setMedicine(medicine);
+		this.setMedication(medication);
 		this.setQuantityOrdered(quantityOrdered);
 		this.setTotalPrice(totalPrice);
 		this.setStatus(status);
@@ -30,11 +30,11 @@ public class OrderFromSupplier {
 	}
 	
 	public int getId() { return this.id; }
-	public Medication getMedicine() { return this.medicine; }
+	public Medication getMedication() { return this.medication; }
 	public int getQuantityOrdered() { return this.quantityOrdered; }
 	public double getTotalPrice() { return this.totalPrice; }
 	public String getStatus() { return this.status; }
-	public Date getDateSending() { return this.dateSending; }
+	public String getDateSending() { return this.dateSending; }
 	public int getQuantityReceived() { return this.quantityReceived; }
 	
 	public void setId(int id)
@@ -42,9 +42,9 @@ public class OrderFromSupplier {
 		this.id = id;
 	}
 	
-	public void setMedicine(Medication medicine)
+	public void setMedication(Medication medication)
 	{
-		this.medicine = medicine;
+		this.medication = medication;
 	}
 	
 	public void setQuantityOrdered(int quantityOrdered)
@@ -62,7 +62,7 @@ public class OrderFromSupplier {
 		this.status = status;
 	}
 	
-	public void setDateSending(Date dateSending)
+	public void setDateSending(String dateSending)
 	{
 		this.dateSending = dateSending;
 	}

@@ -2,11 +2,18 @@ package view.pharmacist;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.sql.SQLException;
+
+import controller.PharmacistController;
+import dao.OrderFromSupplierDao;
 
 public class OrderCreationForm {
 	private JPanel panel;
 	private JPanel topBlock;
 	private JPanel bottomBlock;
+	private int medicationId;
 	private GenericTextField medicationName;
 	private GenericTextField pharmacyPrice;
 	private GenericTextField prescription;
@@ -43,9 +50,45 @@ public class OrderCreationForm {
 		return this.panel;
 	}
 	
+	public int getMedicationId()
+	{
+		return this.medicationId;
+	}
+	
+	public GenericTextField getSupplierPrice()
+	{
+		return this.supplierPrice;
+	}
+	
+	public GenericTextField getQuantityToOrder()
+	{
+		return this.quantityToOrder;
+	}
+	
+	public GenericTextField getStock()
+	{
+		return this.stock;
+	}
+	
+	public GenericTextField getMaximumStock()
+	{
+		return this.maximumStock;
+	}
+	
+	public GenericTextField getStockAfterReceipt()
+	{
+		return this.stockAfterReceipt;
+	}
+	
+	public GenericTextField getTotalPrice()
+	{
+		return this.totalPrice;
+	}
+	
 	public OrderCreationForm()
 	{	
 		this.instantiateComponents();
+		this.implementLogic();
 		this.styleComponents();
 		this.addComponents();
 	}
@@ -56,17 +99,17 @@ public class OrderCreationForm {
 		this.topBlock = new JPanel(new GridBagLayout());
 		this.bottomBlock = new JPanel(new GridBagLayout());
 		this.medicationName = new GenericTextField("Médicament", false);
-		this.pharmacyPrice = new GenericTextField("Prix en pharmacie", false);
+		this.pharmacyPrice = new GenericTextField("Prix en pharmacie (€)", false);
 		this.prescription = new GenericTextField("Ordonnance", false);
 		this.category = new GenericTextField("Catégorie", false);
 		this.stock = new GenericTextField("Stock", false);
 		this.maximumStock = new GenericTextField("Stock maximum", false);
 		this.supplierName = new GenericTextField("Fournisseur", false) ;
-		this.supplierPrice = new GenericTextField("Prix du fournisseur", false);
+		this.supplierPrice = new GenericTextField("Prix du fournisseur (€)", false);
 		
 		this.quantityToOrder = new GenericTextField("Quantité à commander", true);
 		this.stockAfterReceipt = new GenericTextField("Stock après réception", false);
-		this.totalPrice = new GenericTextField("Prix total", false);
+		this.totalPrice = new GenericTextField("Prix total (€)", false);
 		this.containerButtonCreateAnOrder = new JPanel(new GridLayout(1, 1));
 		this.buttonCreateAnOrder = new JButton("Créer la commande");
 		
@@ -85,6 +128,12 @@ public class OrderCreationForm {
 		this.stockAfterReceiptStyle = new GridBagConstraints();
 		this.totalPriceStyle = new GridBagConstraints();
 		this.buttonCreateAndOrderStyle = new GridBagConstraints();
+	}
+	
+	private void implementLogic()
+	{
+		this.quantityToOrder.getTextField().addKeyListener(PharmacistController.calculateStockAndTotalPrice);
+		this.buttonCreateAnOrder.addActionListener(PharmacistController.createAnOrder);
 	}
 	
 	private void styleComponents()
@@ -145,24 +194,19 @@ public class OrderCreationForm {
 	
 	public void updateFormData(String medicationDataString)
 	{
-		// this.refreshPanel();
-
 		String[] medicationData = medicationDataString.split("@");
 		
 		System.out.println(medicationData[3]);
 		
-		int medicationId = Integer.parseInt(medicationData[0]);
+		this.medicationId = Integer.parseInt(medicationData[0]);
 		String medicationName = medicationData[1];
-		String medicationPrice = medicationData[2] + " €";
+		String medicationPrice = medicationData[2];
 		String prescription = Boolean.parseBoolean(medicationData[3]) ? "Requis" : "Non requis";
 		String medicationCategory = medicationData[4];
 		String medicationStock = medicationData[5];
 		String medicationMaximumStock = medicationData[6];
 		String medicationSupplierName = medicationData[7];
-		String medicationSupplierPrice = medicationData[8] + " €";
-		
-		System.out.println(medicationDataString);
-		System.out.println(medicationName);
+		String medicationSupplierPrice = medicationData[8];
 		
 		this.medicationName.setFieldValue(medicationName);
 		this.pharmacyPrice.setFieldValue(medicationPrice);
@@ -172,12 +216,6 @@ public class OrderCreationForm {
 		this.maximumStock.setFieldValue(medicationMaximumStock);
 		this.supplierName.setFieldValue(medicationSupplierName);
 		this.supplierPrice.setFieldValue(medicationSupplierPrice);
-		
-		// this.medicationName = new GenericTextField("Médicament", medicationName);
-		// this.pharmacyPrice = new GenericTextField("Prix unitaire", medicationPrice);
-		// this.prescription = new GenericTextField("Ordonnance", prescription);
-
-		// this.addComponents();
 	}
 	
 	private void refreshPanel() {
