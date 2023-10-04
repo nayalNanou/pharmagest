@@ -197,8 +197,6 @@ public class OrderCreationForm {
 	{
 		String[] medicationData = medicationDataString.split("@");
 		
-		System.out.println(medicationData[3]);
-		
 		this.medicationId = Integer.parseInt(medicationData[0]);
 		String medicationName = medicationData[1];
 		String medicationPrice = medicationData[2];

@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import dao.UserDao;
 import entity.User;
 import view.Frame;
+import view.AppMenu;
 
 public class LoginController {
 	public static ActionListener signIn = new ActionListener() {
@@ -17,6 +18,19 @@ public class LoginController {
 			String errorMessage = "Le nom d'utilisateur ou mot de passe n'est pas valide.";
 			
 			if (username.equals("admin")) {
+				User loggedInUser = new User(
+					0,
+					"admin",
+					"Administrateur",
+					"",
+					"ADMIN"
+				);
+				// Frame.panelLogin.setLoggedInUser(loggedInUser);
+			
+				Frame.panelPharmacist.getAppMenu().getAdminPanel().setVisible(true);
+				Frame.panelSeller.getAppMenu().getAdminPanel().setVisible(true);
+				Frame.panelCashier.getAppMenu().getAdminPanel().setVisible(true);
+				
 				Frame.panelPharmacist.showView("MedicationTable");
 				Frame.refreshFrame(Frame.panelPharmacist.getPanel());
 			} else {
@@ -32,7 +46,11 @@ public class LoginController {
 					&& !user.getUsername().equals("") 
 					&& user.getUsername().equals(username) 
 					&& user.getPassword().equals(password)
-				) {
+				) {			
+					Frame.panelPharmacist.getAppMenu().getAdminPanel().setVisible(false);
+					Frame.panelSeller.getAppMenu().getAdminPanel().setVisible(false);
+					Frame.panelCashier.getAppMenu().getAdminPanel().setVisible(false);
+					
 					if (user.getRole().equals("PHARMACIST")) {
 						Frame.panelPharmacist.showView("MedicationTable");
 						Frame.refreshFrame(Frame.panelPharmacist.getPanel());
@@ -43,12 +61,13 @@ public class LoginController {
 						Frame.panelSeller.showView("SalesWindow");
 						Frame.refreshFrame(Frame.panelSeller.getPanel());
 					} else if (user.getRole().equals("ADMIN")) {
+						Frame.panelPharmacist.getAppMenu().getAdminPanel().setVisible(true);
+						Frame.panelSeller.getAppMenu().getAdminPanel().setVisible(true);
+						Frame.panelCashier.getAppMenu().getAdminPanel().setVisible(true);
 					
-					} else {
-					
+						Frame.panelPharmacist.showView("MedicationTable");
+						Frame.refreshFrame(Frame.panelPharmacist.getPanel());
 					}
-				
-					System.out.println("Bienvenue sur votre espace de travail");
 				} else {
 					Frame.panelLogin.getLoginForm().getErrorMessage().setText(errorMessage);
 				}

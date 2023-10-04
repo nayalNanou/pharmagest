@@ -7,10 +7,22 @@ import java.awt.*;
 
 import controller.LoginController;
 import view.Frame;
+import entity.User;
 
 public class PanelLogin {
 	private JPanel panel;
 	private LoginForm loginForm;
+	private static User loggedInUser;
+	
+	public static User getLoggedInUser()
+	{
+		return loggedInUser;
+	}
+	
+	public static void setLoggedInUser(User user)
+	{
+		loggedInUser = user;
+	}
 	
 	public JPanel getPanel()
 	{

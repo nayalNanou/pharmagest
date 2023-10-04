@@ -20,6 +20,11 @@ public class PanelSeller {
 		return this.panel;
 	}
 	
+		public AppMenu getAppMenu()
+	{
+		return this.appMenu;
+	}
+	
 	public PanelSeller() throws SQLException
 	{
 		this.instantiateComponents();

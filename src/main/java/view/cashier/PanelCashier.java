@@ -18,6 +18,11 @@ public class PanelCashier {
 		return this.panel;
 	}
 	
+	public AppMenu getAppMenu()
+	{
+		return this.appMenu;
+	}
+	
 	public SalesTransactionTable getSalesTransactionTable()
 	{
 		return this.salesTransactionTable;

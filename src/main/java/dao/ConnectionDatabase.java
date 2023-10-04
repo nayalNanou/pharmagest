@@ -21,7 +21,6 @@ public class ConnectionDatabase {
             .getConnection("jdbc:postgresql://localhost:5432/pharmagest",
             "postgres", "woshinanou");
          this.connection.setAutoCommit(false);
-         System.out.println("Opened database successfully");
       } catch ( Exception e ) {
          System.err.println( e.getClass().getName()+": "+ e.getMessage() );
          System.exit(0);
@@ -32,7 +31,6 @@ public class ConnectionDatabase {
 	{
 	 	try {
 			this.connection.close();
-			System.out.println("Closed database successfully");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

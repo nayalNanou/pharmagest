@@ -26,6 +26,11 @@ public class PanelPharmacist {
 		return this.panel;
 	}
 	
+	public AppMenu getAppMenu()
+	{
+		return this.appMenu;
+	}
+	
 	public OrderCreationForm getOrderCreationForm()
 	{
 		return this.orderCreationForm;

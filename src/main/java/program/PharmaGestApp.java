@@ -12,9 +12,9 @@ import dao.OrderFromSupplierDao;
 public class PharmaGestApp {
 	public static void main(String[] args) throws SQLException {
 		ConnectionDatabase connectionDatabase = new ConnectionDatabase();
-		
+
 		Frame.show();
-		
+
 		connectionDatabase.closeConnection();
 	}
 }

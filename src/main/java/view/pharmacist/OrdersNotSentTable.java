@@ -79,8 +79,6 @@ public class OrdersNotSentTable {
 			int tableRowLen = this.tableRows.get(i).length;
 			GridBagConstraints[] tableRowStyle = new GridBagConstraints[tableRowLen];
 			
-			System.out.println(tableRowLen);
-			
 			GridBagConstraints medicationNameStyle = new GridBagConstraints();
 			medicationNameStyle.gridy = i;
 			medicationNameStyle.gridx = 0;

@@ -54,7 +54,6 @@ public class MedicationDao extends ConnectionDatabase {
 		return listMedication;
 	}
 
-/*
 	public Medication findById(int id) throws SQLException
 	{
 		Medication medication = new Medication();
@@ -80,7 +79,6 @@ public class MedicationDao extends ConnectionDatabase {
 		
 		return medication;
 	}
-*/
 	
 	public ArrayList<Medication> findMedicationBelowOrderThreshold() throws SQLException
 	{
